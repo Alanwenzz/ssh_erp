@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts> 
+  <constant name="struts.devMode" value="true"></constant>
+  <constant name="struts.i18n.encoding" value="UTF-8"/>
+  <!-- package 相当于java 包 -->
+  <package name="demo" namespace="/" extends="struts-default">
+  	<!-- 员工 -->
+    <action name="emp_*" class="com.zw.ssh.erp.action.EmpAction" method="{1}"></action>
+    <!-- 登陆/退出 -->
+	<action name="login_*" class="com.zw.ssh.erp.action.LoginAction" method="{1}"></action>
+	<!-- 菜单 -->
+	<action name="menu_*" class="com.zw.ssh.erp.action.MenuAction" method="{1}"></action>
+	<!-- 供应商 -->
+	<action name="supplier_*" class="com.zw.ssh.erp.action.SupplierAction" method="{1}"></action>
+	<!-- 商品 -->
+	<action name="goods_*" class="com.zw.ssh.erp.action.GoodsAction" method="{1}"></action>
+	<!-- 订单 -->
+	<action name="orders_*" class="com.zw.ssh.erp.action.OrdersAction" method="{1}"></action>
+	<!-- 显示仓库 -->
+	<action name="store_*" class="com.zw.ssh.erp.action.StoreAction" method="{1}"></action>
+	<!-- 显示仓库食品 -->
+	<action name="storedetail_*" class="com.zw.ssh.erp.action.StoredetailAction" method="{1}"></action>
+	<!-- 入库 -->
+	<action name="orderdetail_*" class="com.zw.ssh.erp.action.OrderdetailAction" method="{1}"></action>
+	<!-- 仓库操作记录 -->
+	<action name="storeoper_*" class="com.zw.ssh.erp.action.StoreoperAction" method="{1}"></action>
+  </package>
+</struts>

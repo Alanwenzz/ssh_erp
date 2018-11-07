@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+encoding//src/com/zw/ssh/erp/action/EmpAction.java=UTF-8
+encoding//src/com/zw/ssh/erp/action/GoodsAction.java=UTF-8
+encoding//src/com/zw/ssh/erp/action/MenuAction.java=UTF-8
+encoding//src/com/zw/ssh/erp/action/OrdersAction.java=UTF-8
+encoding//src/com/zw/ssh/erp/action/SupplierAction.java=UTF-8
+encoding//src/com/zw/ssh/erp/dao/EmpDao.java=UTF-8
+encoding//src/com/zw/ssh/erp/pojo/Menu.java=UTF-8
+encoding//src/com/zw/ssh/erp/pojo/Orders.java=UTF-8

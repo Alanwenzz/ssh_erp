@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+      http://www.springframework.org/schema/aop
+      http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+    <!-- 打开Spring的Annotation支持 -->
+	<context:annotation-config />
+	<!-- 设定Spring 去哪些包中找Annotation -->
+	<context:component-scan base-package="com.zw.ssh.erp"></context:component-scan>
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	
+	<!-- 数据库链接 -->
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/ssh_erp" />
+		<property name="username" value="root" />
+		<property name="password" value="XZyn1234" />
+	</bean>
+	
+	<!-- 事务管理@Transaction -->
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="txManager"/>
+	
+	
+	<!-- 注入sessionFactory 只需一个 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<!-- 依赖注入 hibernate 连接对象 -->
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- <property name="annotatedClasses">
+			<list>
+				<value>com.bjsxt.model.User</value>
+			</list>
+		</property> -->
+		
+		<property name="packagesToScan">
+			<list>
+				<value>com.zw.ssh.erp.pojo</value>
+			</list>
+		</property>
+		
+		<!-- hibernate基本信息配置 -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQL5Dialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate5.SpringSessionContext</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- AOP 封装hibernate基本操作 -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+
+</beans>
