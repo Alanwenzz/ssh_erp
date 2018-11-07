@@ -138,7 +138,7 @@ $(function(){
 	    panelWidth:700,
 	    idField:'uuid',    
 	    textField:'name',    
-	    url:'supplier_findAll?t1.type=1',    
+	    url:'supplier_list?t1.type=1',    
 	    columns:[[    
 			{field:'uuid',title:'编号',width:100},
 			{field:'name',title:'名称',width:100},

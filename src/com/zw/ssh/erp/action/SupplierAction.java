@@ -139,6 +139,14 @@ public class SupplierAction extends ActionSupport{
 		String listString = JSON.toJSONString(le, SerializerFeature.DisableCircularReferenceDetect);
 		write(listString);
 	}
+	//自动补全
+	public void list() {
+		if(t1==null) {
+			setT1(new Supplier());
+		}
+		getT1().setName(q);
+		findAll();
+	}	
 	//显示要修改的用户
 	public void get() {
 		t=supplierService.get(t.getUuid());
